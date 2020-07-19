@@ -1,5 +1,6 @@
 // Setup empty JS object to act as endpoint for all routes
-const projectData = {};
+let projectData = {};
+// projectData = newEntry;
 
 // Require Express to run server and routes
 const express = require('express');
@@ -36,7 +37,7 @@ function listening() {
 // GET route
 app.get('/all', sendData);
 function sendData (req, res) {
-  res.send(data);
+  res.send(projectData);
   console.log('Response sent')
 };
 
@@ -49,14 +50,13 @@ function sendData (req, res) {
 // };
 
 // POST weather data
-app.post('/add', addWeather); //lesson chaining promises
-function addWeather(req,res) {
-  console.log(req.body);
-  newEntry = {
+app.post('/add', function (req, res) {
+console.log('Response:', res.body);
+projectData = {
     date: req.body.date,
     temp: req.body.temp,
     content: req.body.content
   }
-  projectData.push(newEntry);
+  // newEntry.push(projectData);
   console.log(projectData);
-};
+});

@@ -25,11 +25,25 @@ body{
 }
 
 #entryHolder{
-
+  display:block;
+  height: 60px;
+  width: 320px;
+  background: none;
+  color: #f0d43a;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  border: none;
 }
 
 #date{
-
+  display:block;
+  height: 60px;
+  width: 320px;
+  background: none;
+  color: #f0d43a;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  border: none;
 }
 
 #temp{
