@@ -53,9 +53,9 @@ function sendData (req, res) {
 app.post('/add', function (req, res) {
 console.log('Response:', res.body);
 projectData = {
-    date: req.body.date,
-    temp: req.body.temp,
-    content: req.body.content
+    date: res.body.date,
+    temp: res.body.temp,
+    content: res.body.content
   }
   // newEntry.push(projectData);
   console.log(projectData);
