@@ -1,6 +1,6 @@
 /* Global Variables */
 let baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-const apiKey = ',us&APPID=67e0e2fd1434dd8ac6ff3ac66554b091';
+const apiKey = ',us&APPID=67e0e2fd1434dd8ac6ff3ac66554b091&units=imperial';
 
 // Create a new date instance dynamically with JS
 let d = new Date();
