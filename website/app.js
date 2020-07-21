@@ -64,7 +64,6 @@ let feeling = document.getElementById('feelings').value;
 //   })
 // };
 
-
 // Async GET
 const getWeatherData = async (baseURL, zip, apiKey) => {
   const res = await fetch(baseURL + zip + apiKey)
@@ -106,7 +105,7 @@ const postData = async ( url = '', data = {})=>{
 const updateUI = async() => {
   const req = await fetch('/all');
   try {
-    const allData = await req.json();
+    const allData = await req.json()
     document.getElementById('temp').innerHTML = allData.temp;
     document.getElementById('content').innerHTML = allData.content;
     document.getElementById('date').innerHTML = allData.date;

@@ -41,22 +41,15 @@ function sendData (req, res) {
   console.log('Response sent')
 };
 
-// POST route
-
-// app.post(baseURL + apiKey, addData);
-// function addData (req, res) {
-//   data.push(req.body);
-//   console.log(req.body);
-// };
-
 // POST weather data
 app.post('/add', function (req, res) {
-console.log('Response:', res.body);
-projectData = {
-    date: res.body.date,
-    temp: res.body.temp,
-    content: res.body.content
+console.log('Response:', req.body);
+let newEntry = {
+    date: req.body.date,
+    temp: req.body.temp,
+    content: req.body.content
   }
-  // newEntry.push(projectData);
+  projectData = newEntry;
   console.log(projectData);
+  res.send(projectData);
 });
