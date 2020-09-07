@@ -4,8 +4,6 @@
 let projectData = {};
 // projectData = newEntry;
 
-
-
 // Require Express to run server and routes
 const express = require('express');
 
@@ -28,7 +26,7 @@ app.use(express.static('dist'));
 
 
 // Setup Server
-const port = 8000;
+const port = 8082;
 const server = app.listen(port, listening);
 function listening() {
   console.log('server running');
@@ -49,9 +47,9 @@ function sendData (req, res) {
 app.post('/add', function (req, res) {
 console.log('Response:', req.body);
 let newEntry = {
-    date: req.body.date,
-    temp: req.body.temp,
-    content: req.body.content
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
+    country: req.body.country
   }
   projectData = newEntry;
   console.log(projectData);
