@@ -22,9 +22,11 @@ console.log(city);
   getGeonamesData(baseURL, city, username)
   .then(function(data) {
     console.log('data checkin', data)
+
     //Add data to POST request
     let geo = data.geonames[0];
     console.log(geo);
+
     postData('/add', {
       latitude: geo.lat,
       longitude: geo.lng,
@@ -77,9 +79,9 @@ const updateUI = async() => {
   const req = await fetch('/all')
   try {
     const allData = await req.json()
-    document.getElementById('latitude').innerHTML = allData.lat;
-    document.getElementById('longitude').innerHTML = allData.lng;
-    document.getElementById('country').innerHTML = allData.countryName;
+    document.getElementById('latitude').innerHTML = allData.latitude;
+    document.getElementById('longitude').innerHTML = allData.longitude;
+    document.getElementById('country').innerHTML = allData.country;
   } catch(error) {
     console.log('error', error)
   }
