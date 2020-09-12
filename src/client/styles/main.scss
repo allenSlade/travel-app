@@ -1,0 +1,20 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+#app {
+    display: grid;
+    grid-auto-rows: minmax(150px, auto);
+    /* grid-template-columns:  */
+    height:100vh;
+    background: #f0d43a;
+    color: #f0d43a;
+    justify-content: center;
+    grid-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
