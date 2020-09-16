@@ -1,6 +1,36 @@
+$font-thin:'Lato', sans-serif;
+$font-stack: Arial, sans-serif;
+$primary-color: #ef6351;
+$secondary-color: #f38357;
+$tertiary-color: #f7a399;
+$quaternary-color: #fbc3bc;
+$quinary-color: #ffe3e0;
+
 header {
-  p {
+  display:block;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-left: 5%;
+
+
+  img {
+
+  }
+  .header-icon {
+    margin-bottom: -30px;
+    margin-left: -20px;
+    fill: $primary-color;
+  }
+  h1 {
     font-family: cursive;
-    font-size: xx-large;
+    font-size: 64px;
+    margin-top: -10px;
+    margin-bottom: 0;
+  }
+  p {
+    font-family: $font-thin;
+    color: $primary-color;
+    font-size: 24px;
+    margin-top: 0px;
   }
 }

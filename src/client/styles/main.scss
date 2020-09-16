@@ -1,20 +1,44 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+$font-thin:'Lato', sans-serif;
+$font-stack: Arial, sans-serif;
+$primary-color: #ef6351;
+$secondary-color: #f38357;
+$tertiary-color: #f7a399;
+$quaternary-color: #fbc3bc;
+$quinary-color: #ffe3e0;
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
-}
+main {
+  margin-left: 20px;
 
-#app {
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f0d43a;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+  input [type=text]{
+      display:block;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      height: 10%;
+      width: 50%;
+      background:white;
+      border: 1px solid black;
+      color: black;
+      font-size: 24px;
+      font-family: $font-stack;
+      border: none;
+  }
+  label {
+      display:block;
+      font-size: 18px;
+      font-family: $font-stack;
+      margin-top: 10px;
+      margin-bottom: 10px;
+  }
+  button {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 25%;
+      height: 40px;
+      background: $primary-color;
+      color: white;
+      font-size: 18px;
+      font-family: $font-stack;
+      border: none;
+      // box-shadow: 2px 4px 5px #444;
+  }
 }

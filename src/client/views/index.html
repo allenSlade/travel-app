@@ -4,32 +4,43 @@
     <meta charset="UTF-8">
     <title>Travel App</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100&family=Lobster&display=swap" rel="stylesheet">
   </head>
 
    <body id = "app">
+
      <header class ="holder headline">
-       <p> bon voyage </p>
+       <!-- <img src="src/client/media/flight-24px.svg" alt="" class="header-icon"> -->
+       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+       <h1> bon voyage </h1>
+       <p>TRAVEL PLANNER</p>
      </header>
 
       <main>
-        <div class ="holder zip">
-          <label for="city">Destination City</label>
-          <input type="text" id="city" placeholder="enter city here">
-        </div>
+        <form class ="holder zip city-input" onsubmit="return performAction">
+          <label for="city">Trip Destination</label>
+          <input type="text" id="city" placeholder="enter city here" onsubmit="return performAction">
+          <label for="date">Departure Date</label>
+          <input type="date" name="" value="" id="travel-date" onsubmit="return performAction">
+        </form>
         <div class ="holder feel">
-          <!-- <label for="country">How are you feeling today?</label> -->
-          <!-- <textarea class= "myInput" id="country" placeholder="Enter your feelings here" rows="9" cols="50"></textarea> -->
-          <button id="generate" type="submit"> Take Off! </button>
+          <button id="generate" type="submit" onsubmit="return performAction">save trip</button>
         </div>
-        <div class ="holder entry">
-        <div class = "title">Most Recent Entry</div>
-           <div id = "entryHolder">
-             <div id = "latitude"></div>
-             <div id = "longitude"></div>
-             <div id = "country"></div>
-          </div>
-        </div>
-
       </main>
+
+      <section class ="holder entry" id="entryHolder">
+        <p>Destination:</p>
+        <p class="destination"></p>
+        <p>Departure:</p>
+        <p class="departure"></p>
+        <div id = "latitude"></div>
+        <div id = "longitude"></div>
+        <div id = "country"></div>
+        <p id="count-down"></p>
+        <p id="count-down2"></p>
+        <p id="count-down3"></p>
+      </section>
+
   </body>
 </html>

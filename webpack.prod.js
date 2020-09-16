@@ -12,6 +12,8 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    // libraryTarget: 'var',
+    // library: 'Client'
   },
   module: {
         rules: [
@@ -23,6 +25,12 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                  'file-loader',
+                ]
             }
         ]
     },

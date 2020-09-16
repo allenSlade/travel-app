@@ -1,28 +1,19 @@
-// header
-header {
-  p {
-    font-family: cursive;
-    font-size: xx-large;
-  }
+$font-display:'Lobster', cursive;
+$font-thin:'Lato', sans-serif;
+$font-stack: Arial, sans-serif;
+$primary-color: #ef6351;
+$secondary-color: #f38357;
+$tertiary-color: #f7a399;
+$quaternary-color: #fbc3bc;
+$quinary-color: #ffe3e0;
+
+body {
+  margin: 20px;
 }
 
-.holder {
 
-}
+  #travel-date {
 
-.entry {
-    background: rgba(59, 74, 107, .4);
-}
-
-#entryHolder {
-  display:block;
-  height: 60px;
-  width: 320px;
-  background: none;
-  color: #f0d43a;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
-  border: none;
 }
 
 #date {
@@ -52,44 +43,8 @@ header {
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label {
-    display:block;
-    font-size: 27px;
-}
 
-input {
-    display:block;
-    height: 60px;
-    width: 320px;
-    background:white;
-    border: black 1px solid;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-}
 
-button {
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
-    font-family: 'Oswald', sans-serif;
-    border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-
-h1 {
-    font-size: 36px;
-}
-
-textarea {
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -99,19 +54,19 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+    color: black;
+    font-family: $font-stack;
 
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+    color: black;
+    font-family: $font-stack;
 
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #f0d43a;
-    font-family: 'Oswald', sans-serif;
+    color: black;
+    font-family: $font-stack;
 
 }

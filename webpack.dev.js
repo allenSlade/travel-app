@@ -12,6 +12,21 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
+    // libraryTarget: 'var',
+    // library: 'Client'
+  },
+  devServer: {
+    // webpack-dev-server setup
+    host: 'localhost',
+    port: 8080,
+    proxy: {
+      // The frontend code uses the backend to store
+      // data. webpack-dev-server fails at this. Hence,
+      // redirecting frontend api requests to a different port.
+      context: () => true,
+      target: 'http://localhost:8081',
+      secure: false
+    }
   },
   module: {
         rules: [

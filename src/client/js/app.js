@@ -2,22 +2,25 @@
 const username = '&maxRows=10&username=meerkat';
 let baseURL = 'http://api.geonames.org/searchJSON?q=';
 
-// Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-// Event listener for genrate button
-// document.getElementById('generate').addEventListener('click', performAction);
+
+// Create a new date instance dynamically with JS
+
+// let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+
+
+
+
 
 // API Call
 function performAction() {
-// Target input id = 'zip'
+let destination = document.querySelector('.destination');
 let city = document.getElementById('city').value;
+let departure = document.getElementById('travel-date').value;
 console.log(city);
-// Target textarea id = 'feelings'
-// let country = document.getElementById('country');
-// let latitude = document.getElementById('latitude');
-// let longitude = document.getElementById('longitude');
+
+
+
 
   getGeonamesData(baseURL, city, username)
   .then(function(data) {
@@ -81,7 +84,29 @@ const updateUI = async() => {
     const allData = await req.json()
     document.getElementById('latitude').innerHTML = allData.latitude;
     document.getElementById('longitude').innerHTML = allData.longitude;
-    document.getElementById('country').innerHTML = allData.country;
+    let country = document.getElementById('country');
+    country.value = allData.country;
+
+    let city = document.getElementById('city').value;
+    let departure = document.getElementById('travel-date').value;
+    console.log(departure)
+    console.log(city);
+
+
+    let destination = document.querySelector('.destination');
+    // document.querySelector('.departure').innerText = departure;
+    destination.innerText = `${city}, ${country.value}`;
+
+    // Count down timer
+    let today = new Date();
+    let depDate = new Date(departure);
+    depDate.setFullYear(today.getFullYear());
+    let msPerDay = 24 * 60 * 60 * 1000;
+    let countDown = (depDate.getTime() - today.getTime()) / msPerDay;
+    countDown= Math.round(countDown);
+    document.getElementById('count-down').innerText = `${countDown}`;
+    document.getElementById('count-down2').innerText = `days to my trip to`
+    document.getElementById('count-down3').innerText = `${city}, ${country.value}`
   } catch(error) {
     console.log('error', error)
   }
