@@ -1,3 +1,4 @@
+$font-oswald: 'Oswald', sans-serif;
 $font-display:'Lobster', cursive;
 $font-thin:'Lato', sans-serif;
 $font-stack: Arial, sans-serif;
@@ -11,6 +12,7 @@ section {
   display:block;
   padding: 0;
   margin-right: 0px;
+  margin-bottom: 120px;
   height: 250px;
   width: 100%;
   background-color: none;
@@ -22,7 +24,7 @@ section {
 
 // count down styles
   #count-down {
-    font-family: $font-display;
+    font-family: $font-oswald;
     font-size: 108px;
     color: $secondary-color;
   }
@@ -36,6 +38,7 @@ section {
     font-family: $font-display;
     font-size: 36px;
     color: $quaternary-color;
+    margin-bottom: 100px;
   }
 
   .entry {

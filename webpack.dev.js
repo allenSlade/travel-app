@@ -2,6 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const dotenv = require('dotenv').config( {
+  path: path.join(__dirname, '.env')
+} );
 // const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
@@ -55,6 +58,10 @@ module.exports = {
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
         }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
+            // 'process.env.DEBUG': JSON.stringify(process.env.DEBUG)
+        })
         // new WorkboxPlugin.GenerateSW()
     ]
 };

@@ -1,6 +1,9 @@
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
+let weatherData = {};
 // projectData = newEntry;
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Require Express to run server and routes
 const express = require('express');
@@ -32,11 +35,18 @@ function listening() {
 
 /* Routes */
 
-// GET route
-app.get('/all', sendData);
+// getGeonamesData GET route
+app.get('/geoData', sendData);
 function sendData (req, res) {
   res.send(projectData);
-  console.log('Response sent')
+  console.log('Response sent', projectData)
+};
+
+// getWeatherBitData GET route
+app.get('/wetData', assignData);
+function assignData (req, res) {
+  res.send(weatherData);
+  console.log('Response sent', weatherData)
 };
 
 // POST weather data
@@ -45,9 +55,33 @@ console.log('Response:', req.body);
 let newEntry = {
     latitude: req.body.latitude,
     longitude: req.body.longitude,
-    country: req.body.country
+    country: req.body.country,
+    date: req.body.date
   }
   projectData = newEntry;
-  console.log(projectData);
+  console.log('projectData', projectData);
   res.send(projectData);
+});
+
+// POST weather data
+app.post('/update', function (req, res) {
+console.log('Response:', req.body);
+let nuvoEntry = {
+    highTemp: req.body.highTemp,
+    lowTemp: req.body.lowTemp,
+    clouds: req.body.clouds,
+    precip: req.body.precip,
+    pres: req.body.pres,
+    snow: req.body.snow,
+    vis: req.body.vis,
+    weather: req.body.weather,
+    weatherCode: req.body.weatherCode,
+    weatherDesc: req.body.weatherDesc,
+    weatherIcon: req.body.weatherIcon,
+    windDir: req.body.windDir,
+    windSpeed: req.body.windSpeed
+  }
+  weatherData = nuvoEntry;
+  console.log('weatherData', weatherData);
+  res.send(weatherData);
 });
