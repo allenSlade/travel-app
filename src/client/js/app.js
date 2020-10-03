@@ -3,7 +3,12 @@ const username = `&maxRows=10&username=${process.env.GEO_USERNAME}`;
 let baseURL = 'http://api.geonames.org/searchJSON?q=';
 const apiKey = `&key=${process.env.WEBIT_API_KEY}`;
 let apiURL = 'https://api.weatherbit.io/v2.0/forecast/daily?city=';
+const pixaKey = `${process.env.PIXA_API_KEY}`;
+console.log(pixaKey);
 
+let city = document.getElementById('city').value;
+let pixaURL = `https://pixabay.com/api/?key=${pixaKey}&q=${city}&image_type=photo`;
+// let pixaURL = "https://pixabay.com/api/?key="+pixaKey+"&q="+city+"&image_type=photo";
 
 // API Call
 function performAction() {
@@ -55,6 +60,18 @@ console.log(countDown);
           weatherIcon: weBit.weather.icon,
           windDir: weBit.wind_cdir,
           windSpeed: weBit.wind_spd
+        });
+
+        let city = document.getElementById('city').value;
+        console.log('getPixabayData check-in', city);
+        getPixabayData(pixaURL, city, pixaKey)
+        .then(function(pixaData) {
+          console.log('getPixabayData check-in', pixaData)
+
+          let pixa = pixaData.hits[0];
+          postData('/insert', {
+            webformatURL: pixa.webformatURL
+          });
         })
       })
       .then(function() {
@@ -62,6 +79,9 @@ console.log(countDown);
       })
       .then(function() {
         updateWetUI();
+      })
+      .then(function() {
+        updatePixaUI();
       })
     })
 };
@@ -154,6 +174,29 @@ const updateData = async ( url = '', data = {})=>{
     }
 };
 
+// Geonames Async POST
+const insertData = async ( url = '', data = {})=>{
+    console.log(data)
+
+      const response = await fetch(url, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+     // Body data type must match "Content-Type" header
+      body: JSON.stringify(data),
+    })
+
+      try {
+        const newData = await response.json()
+        console.log(newData)
+        return newData;
+      } catch(error) {
+      console.log("error", error)
+      }
+};
+
 // Update UI with promise
 const updateGeoUI = async() => {
   const req = await fetch('/geoData')
@@ -208,6 +251,21 @@ const updateWetUI = async() => {
     document.getElementById('weather-icon').innerHTML = allData.weatherIcon;
     document.getElementById('wind-dir').innerHTML = allData.windDir;
     document.getElementById('wind-speed').innerHTML = allData.windSpeed;
+
+  } catch(error) {
+    console.log('error', error)
+  }
+};
+
+const updatePixaUI = async() => {
+  const req = await fetch('/pixaData')
+  try {
+    const allData = await req.json()
+
+    // Pixabay update UI (id='pixabay-image')
+    let cityImage = document.getElementById('pixabay-image');
+    cityImage.setAttribute('src', allData.webformatURL);
+
 
   } catch(error) {
     console.log('error', error)

@@ -1,6 +1,7 @@
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 let weatherData = {};
+let pixabayData = {};
 // projectData = newEntry;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -49,7 +50,14 @@ function assignData (req, res) {
   console.log('Response sent', weatherData)
 };
 
-// POST weather data
+// getWeatherBitData GET route
+app.get('/pixaData', grabData);
+function grabData (req, res) {
+  res.send(pixabayData);
+  console.log('Response sent', pixabayData)
+};
+
+// POST Geonames data
 app.post('/add', function (req, res) {
 console.log('Response:', req.body);
 let newEntry = {
@@ -63,7 +71,7 @@ let newEntry = {
   res.send(projectData);
 });
 
-// POST weather data
+// POST WeatherBit data
 app.post('/update', function (req, res) {
 console.log('Response:', req.body);
 let nuvoEntry = {
@@ -84,4 +92,15 @@ let nuvoEntry = {
   weatherData = nuvoEntry;
   console.log('weatherData', weatherData);
   res.send(weatherData);
+});
+
+// POST Pixabay data
+app.post('/insert', function (req, res) {
+console.log('Response:', req.body);
+let newEntry = {
+    webformatURL: req.body.webformatURL
+  }
+  pixabayData = newEntry;
+  console.log('pixabayData', pixabayData);
+  res.send(pixabayData);
 });
