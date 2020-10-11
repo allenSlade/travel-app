@@ -2,6 +2,7 @@
 let projectData = {};
 let weatherData = {};
 let pixabayData = {};
+let countryData = {};
 // projectData = newEntry;
 const dotenv = require('dotenv');
 dotenv.config();
@@ -50,12 +51,20 @@ function assignData (req, res) {
   console.log('Response sent', weatherData)
 };
 
-// getWeatherBitData GET route
+// getPixabayData GET route
 app.get('/pixaData', grabData);
 function grabData (req, res) {
   res.send(pixabayData);
   console.log('Response sent', pixabayData)
 };
+
+// getCountryData GET route
+app.get('/countryData', getData);
+function getData (req, res) {
+  res.send(countryData);
+  console.log('Response sent', pixabayData)
+};
+
 
 // POST Geonames data
 app.post('/add', function (req, res) {
@@ -103,4 +112,21 @@ let newEntry = {
   pixabayData = newEntry;
   console.log('pixabayData', pixabayData);
   res.send(pixabayData);
+});
+
+// POST Pixabay data
+app.post('/country', function (req, res) {
+console.log('Response:', req.body);
+let newEntry = {
+    flag: req.body.flag,
+    capital: req.body.capital,
+    currencies: req.body.currencies,
+    languages: req.body.languages,
+    population: req.body.population,
+    region: req.body.region,
+    timezones: req.body.timezones
+  }
+  countryData = newEntry;
+  console.log('pixabayData', countryData);
+  res.send(countryData);
 });

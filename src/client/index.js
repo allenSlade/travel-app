@@ -1,6 +1,5 @@
 import { performAction } from './js/app';
 
-
 // Stylesheets
 import './styles/style.scss';
 import './styles/aside.scss';
@@ -10,7 +9,7 @@ import './styles/main.scss';
 import './styles/section.scss';
 
 // Images
-
+// import './media/city.png';
 
 export { performAction };
 

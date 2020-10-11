@@ -1,3 +1,5 @@
+$font-oswald: 'Oswald', sans-serif;
+$font-display:'Lobster', cursive;
 $font-thin:'Lato', sans-serif;
 $font-stack: Arial, sans-serif;
 $primary-color: #ef6351;
@@ -7,7 +9,10 @@ $quaternary-color: #fbc3bc;
 $quinary-color: #ffe3e0;
 
 main {
-  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 0px;
+  border: 1px solid $primary-color;
 
   input [type=text]{
       display:block;
@@ -23,15 +28,15 @@ main {
       border: none;
   }
   label {
-      display:block;
+      display: block;
       font-size: 18px;
       font-family: $font-stack;
-      margin-top: 10px;
+      margin-top: 0px;
       margin-bottom: 10px;
   }
   button {
       margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       width: 25%;
       height: 40px;
       background: $primary-color;
@@ -41,4 +46,31 @@ main {
       border: none;
       // box-shadow: 2px 4px 5px #444;
   }
+  // count down styles
+  #count-down {
+     margin: 0;
+     margin-top: 20px;
+     display: inline-flex;
+     font-family: $font-oswald;
+     font-size: 108px;
+     width: 108;
+     color: white;
+     background-color: $primary-color;
+     border-radius: 20px;
+  }
+  #count-down2 {
+     margin-left: 10px;
+     margin-right: 10px;
+     display: inline-block;
+     font-family: $font-thin;
+     font-size: 24px;
+  }
+
+   #count-down3 {
+
+     display: inline-block;
+     font-family: $font-display;
+     font-size: 36px;
+     color: $quaternary-color;
+    }
 }

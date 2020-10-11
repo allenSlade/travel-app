@@ -28,9 +28,10 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
+                exclude: /node_modules/,
                 use: [
-                  'file-loader',
-                ]
+                  "file-loader",
+                ],
             }
         ]
     },

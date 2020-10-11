@@ -13,24 +13,24 @@ header {
   margin-left: 5%;
 
 
-  img {
-
-  }
-  .header-icon {
-    margin-bottom: -30px;
-    margin-left: -20px;
-    fill: $primary-color;
-  }
   h1 {
     font-family: cursive;
-    font-size: 64px;
+    font-size: 92px;
     margin-top: -10px;
     margin-bottom: 0;
+    // color: grey;
   }
   p {
-    font-family: $font-thin;
+    font-family: $font-stack;
     color: $primary-color;
     font-size: 24px;
-    margin-top: 0px;
+    margin-top: -25px;
+  }
+  svg {
+    height: 48px;
+    width: 48px;
+    fill: $tertiary-color;
+    margin-bottom: -30px;
+    margin-left: 60px;
   }
 }

@@ -7,8 +7,9 @@ const pixaKey = `${process.env.PIXA_API_KEY}`;
 console.log(pixaKey);
 
 let city = document.getElementById('city').value;
-let pixaURL = `https://pixabay.com/api/?key=${pixaKey}&q=${city}&image_type=photo`;
-// let pixaURL = "https://pixabay.com/api/?key="+pixaKey+"&q="+city+"&image_type=photo";
+let pixaURL = city => `https://pixabay.com/api/?key=${pixaKey}&q=${city}&image_type=photo`;
+let countriesURL = countryName => `https://restcountries.eu/rest/v2/name/${countryName}?fullText=true`;
+
 
 // API Call
 function performAction() {
@@ -40,6 +41,9 @@ console.log(countDown);
       country: geo.countryName,
       date: departure});
 
+      let countryName = `${geo.countryName}`;
+      console.log(countryName);
+
       let city = document.getElementById('city').value;
       getWeatherBitData(apiURL, city, apiKey)
       .then(function(nuweData) {
@@ -48,12 +52,12 @@ console.log(countDown);
         let weBit = nuweData.data[`${countDown}`];
         updateData('/update', {
           highTemp: weBit.high_temp,
-          lowTemp: weBit.low_temp,
+          // lowTemp: weBit.low_temp,
           clouds: weBit.clouds,
           precip: weBit.precip,
           pres: weBit.pres,
           snow: weBit.snow,
-          vis: weBit.vis,
+          // vis: weBit.vis,
           weather: weBit.weather,
           weatherCode: weBit.weather.code,
           weatherDesc: weBit.weather.description,
@@ -64,7 +68,7 @@ console.log(countDown);
 
         let city = document.getElementById('city').value;
         console.log('getPixabayData check-in', city);
-        getPixabayData(pixaURL, city, pixaKey)
+        getPixabayData(pixaURL(city), pixaKey)
         .then(function(pixaData) {
           console.log('getPixabayData check-in', pixaData)
 
@@ -72,18 +76,44 @@ console.log(countDown);
           postData('/insert', {
             webformatURL: pixa.webformatURL
           });
+
+
+          getCountryData(countriesURL(countryName))
+          .then(function(countryData) {
+            console.log('getCountryData check-in', countryData)
+
+
+            postData('/country', {
+              flag: countryData[0].flag,
+              capital: countryData[0].capital,
+              // capital: countryData[1].capital,
+              currencies: countryData[0].currencies,
+              languages: countryData[0].languages,
+              population: countryData[0].population,
+              // population: countryData[1].population,
+              region: countryData[0].region,
+              timezones: countryData[0].timezones
+            });
+
+
         })
+        .then(function() {
+          updateGeoUI();
+        })
+        .then(function() {
+          updateWetUI();
+        })
+        .then(function() {
+          updatePixaUI();
+        })
+        .then(function() {
+          updateCountriesUI();
+        })
+
       })
-      .then(function() {
-        updateGeoUI();
-      })
-      .then(function() {
-        updateWetUI();
-      })
-      .then(function() {
-        updatePixaUI();
-      })
+
     })
+  })
 };
 
 // Geonames Async GET
@@ -117,6 +147,20 @@ const getWeatherBitData = async (apiURL, city, apiKey) => {
 // Pixabay Async GET
 const getPixabayData = async (pixaURL, city, pixaKey) => {
   let res = await fetch(pixaURL + city + pixaKey)
+  try {
+    //Transform to JSON
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch(error) {
+    console.log('error', error);
+    //handle error
+  }
+};
+
+// Countries Async GET
+const getCountryData = async (countriesURL, countryName) => {
+  let res = await fetch(countriesURL + countryName)
   try {
     //Transform to JSON
     const data = await res.json();
@@ -208,6 +252,7 @@ const updateGeoUI = async() => {
     document.getElementById('longitude').innerHTML = allData.longitude;
     let country = document.getElementById('country');
     country.value = allData.country;
+
     // Geonames API: update UI with fetch data
     let city = document.getElementById('city').value;
     let departure = document.getElementById('travel-date').value;
@@ -227,6 +272,15 @@ const updateGeoUI = async() => {
     document.getElementById('count-down2').innerText = `days to my trip to`;
     document.getElementById('count-down3').innerText = `${city}, ${country.value}`;
 
+    document.getElementById('country-info').innerText = `${country.value}`;
+    let countryName = `${country.value}`;
+    // let countryName = document.getElementById('country-info').value;
+    console.log(countryName);
+
+    document.querySelector('.departure').innerText = `${departure}`;
+
+
+
   } catch(error) {
     console.log('error', error)
   }
@@ -240,15 +294,15 @@ const updateWetUI = async() => {
 
     // Weatherbit update UI (class='weather-container')
     document.getElementById('high').innerHTML = allData.highTemp;
-    document.getElementById('low').innerHTML = allData.lowTemp;
+    // document.getElementById('low').innerHTML = allData.lowTemp;
     document.getElementById('clouds').innerHTML = allData.clouds;
     document.getElementById('precip').innerHTML = allData.precip;
     document.getElementById('pres').innerHTML = allData.pres;
     document.getElementById('snow').innerHTML = allData.snow;
-    document.getElementById('vis').innerHTML = allData.vis;
-    document.getElementById('weather-code').innerHTML = allData.weatherCode;
-    document.getElementById('weather-desc').innerHTML = allData.weatherDesc;
-    document.getElementById('weather-icon').innerHTML = allData.weatherIcon;
+    // document.getElementById('vis').innerHTML = allData.vis;
+    // document.getElementById('weather-code').innerHTML = allData.weatherCode;
+    // document.getElementById('weather-desc').innerHTML = allData.weatherDesc;
+    // document.getElementById('weather-icon').innerHTML = allData.weatherIcon;
     document.getElementById('wind-dir').innerHTML = allData.windDir;
     document.getElementById('wind-speed').innerHTML = allData.windSpeed;
 
@@ -265,6 +319,39 @@ const updatePixaUI = async() => {
     // Pixabay update UI (id='pixabay-image')
     let cityImage = document.getElementById('pixabay-image');
     cityImage.setAttribute('src', allData.webformatURL);
+
+
+  } catch(error) {
+    console.log('error', error)
+  }
+};
+
+const updateCountriesUI = async() => {
+  const req = await fetch('/countryData')
+  try {
+    const allData = await req.json()
+
+    // restCountires update UI
+    let countryFlag = document.getElementById('flag');
+    countryFlag.setAttribute('src', allData.flag);
+    document.getElementById('capital').innerHTML = allData.capital;
+    // document.getElementById('capital').innerHTML = allData.capital;
+
+    document.getElementById('code').innerHTML = allData.currencies[0].code;
+    document.getElementById('name').innerHTML = allData.currencies[0].name;
+    document.getElementById('symbol').innerHTML = allData.currencies[0].symbol;
+
+    document.getElementById('languages-0').innerHTML = allData.languages[0].name;
+    // document.getElementById('languages-1').innerHTML = allData.languages[1].name;
+    // document.getElementById('languages-2').innerHTML = allData.languages[2].name;
+    // document.getElementById('languages-3').innerHTML = allData.languages[3].name;
+    // document.getElementById('languages-4').innerHTML = allData.languages[4].name;
+    // document.getElementById('languages-5').innerHTML = allData.languages[5].name;
+    // document.getElementById('languages-6').innerHTML = allData.languages[6].name;
+
+    document.getElementById('population').innerHTML = allData.population;
+    document.getElementById('region').innerHTML = allData.region;
+    document.getElementById('timezones').innerHTML = allData.timezones[0];
 
 
   } catch(error) {

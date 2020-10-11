@@ -9,51 +9,55 @@ $quaternary-color: #fbc3bc;
 $quinary-color: #ffe3e0;
 
 section {
-  display:block;
-  padding: 0;
+  display: flex;
+  padding: 20px;
   margin-right: 0px;
-  margin-bottom: 120px;
-  height: 250px;
-  width: 100%;
+  margin-bottom: 20px;
   background-color: none;
   color: black;
   font-size: 20px;
   font-family: $font-stack;
   border: 1px solid $primary-color;
 
-
-// count down styles
-  #count-down {
-    font-family: $font-oswald;
-    font-size: 108px;
-    color: $secondary-color;
+  #pixabay-image {
+    height: 33vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 
-  #count-down2 {
-    font-family: $font-thin;
-    font-size: 24px;
-  }
-
-  #count-down3 {
-    font-family: $font-display;
-    font-size: 36px;
-    color: $quaternary-color;
-    margin-bottom: 100px;
+  #flag {
+    max-width: 240px;
   }
 
   .entry {
-      background: none;
+    display: block;
+    background: none;
   }
-}
-.city-input {
-
+  p {
+    display: block;
+    margin-right: 5px;
+    font-family: $font-thin;
+  }
+  h2 {
+    display: block;
+    color: $primary-color;
+  }
+  svg {
+    margin-left: 5px;
+    margin-right: 5px;
+    fill: $primary-color;
+    width: 24px;
+    height: 24px;
+  }
+  .info{
+    margin-right: 50px;
+    margin-bottom: 20px;
+    font-family: $font-stack;
+  }
 }
 
 .holder {
-
-}
-
-p {
-  margin: 2px;
-
+    display: block;
 }
