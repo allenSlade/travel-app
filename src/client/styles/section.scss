@@ -9,7 +9,7 @@ $quaternary-color: #fbc3bc;
 $quinary-color: #ffe3e0;
 
 section {
-  display: flex;
+  display: block;
   padding: 20px;
   margin-right: 0px;
   margin-bottom: 20px;
@@ -20,15 +20,21 @@ section {
   border: 1px solid $primary-color;
 
   #pixabay-image {
+    display: block;
     height: 33vh;
     width: 100%;
-    display: flex;
     justify-content: center;
     align-content: center;
   }
 
   #flag {
     max-width: 240px;
+  }
+  #pixa-logo {
+    display: block;
+    width: 150px;
+    margin-top: 10px;
+
   }
 
   .entry {
