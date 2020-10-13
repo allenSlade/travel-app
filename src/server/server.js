@@ -114,7 +114,7 @@ let newEntry = {
   res.send(pixabayData);
 });
 
-// POST Pixabay data
+// POST Country data
 app.post('/country', function (req, res) {
 console.log('Response:', req.body);
 let newEntry = {
