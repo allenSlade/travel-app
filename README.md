@@ -16,7 +16,7 @@ Built with:
 * Webpack
 
 ## API Reference
-GeoNames Web Services Ducumentation
+GeoNames Web Services Documentation
 http://www.geonames.org/export/web-services.html
 
 Weatherbit.io API Documentation
@@ -27,3 +27,26 @@ https://pixabay.com/api/docs/
 
 REST Countries API Documentation
 https://restcountries.eu/
+
+## Dependencies
+* body-parser
+* cors
+* express
+* webpack-cli
+* babel/core
+* babel/preset-env
+* babel-loader
+* clean-webpack-plugin
+* css-loader
+* dotenv
+* file-loader
+* html-webpack-plugin
+* mini-css-extract-plugin
+* node-sass
+* optimize-css-assets-webpack-plugin
+* sass-loader
+* style-loader
+* terser-webpack-plugin
+* webpack
+* webpack-dev-server
+* workbox-webpack-plugin

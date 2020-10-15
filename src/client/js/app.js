@@ -1,3 +1,5 @@
+import "@babel/polyfill";
+
 /* Geoname Global Variables */
 const username = `&maxRows=10&username=${process.env.GEO_USERNAME}`;
 let baseURL = 'http://api.geonames.org/searchJSON?q=';
@@ -6,9 +8,12 @@ let apiURL = 'https://api.weatherbit.io/v2.0/forecast/daily?city=';
 const pixaKey = `${process.env.PIXA_API_KEY}`;
 console.log(pixaKey);
 
-let city = document.getElementById('city').value;
+let today = new Date();
+
+// let city = document.getElementById('city').value;
 let pixaURL = city => `https://pixabay.com/api/?key=${pixaKey}&q=${city}&image_type=photo`;
 let countriesURL = countryName => `https://restcountries.eu/rest/v2/name/${countryName}?fullText=true`;
+
 
 
 // API Call

@@ -8,9 +8,6 @@ import './styles/header.scss';
 import './styles/main.scss';
 import './styles/section.scss';
 
-// Images
-// import './media/city.png';
-
 export { performAction };
 
 // Event listener for genrate button

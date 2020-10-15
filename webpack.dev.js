@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const dotenv = require('dotenv').config( {
   path: path.join(__dirname, '.env')
 } );
-// const WorkboxPlugin = require('workbox-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -69,7 +69,7 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env': JSON.stringify(process.env),
             // 'process.env.DEBUG': JSON.stringify(process.env.DEBUG)
-        })
-        // new WorkboxPlugin.GenerateSW()
+        }),
+        new WorkboxPlugin.GenerateSW()
     ]
 };

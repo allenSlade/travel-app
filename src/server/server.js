@@ -27,14 +27,6 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('dist'));
 
-// Setup Server
-const port = 8081;
-const server = app.listen(port, listening);
-function listening() {
-  console.log('server running');
-  console.log(`running on localhost: ${port}`);
-};
-
 /* Routes */
 
 // getGeonamesData GET route
@@ -130,3 +122,5 @@ let newEntry = {
   console.log('pixabayData', countryData);
   res.send(countryData);
 });
+
+module.exports = app;
